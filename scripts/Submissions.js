@@ -7,14 +7,14 @@ export const SubmissionList = async () => {
     if (submissions.length === 0) {
         submissionHTML += "<p>No submissions yet.</p>";
     } else {
-        for (const submission of submissions) {
-            submissionHTML += `
-                <section class="submission">
-                    <p><strong>Owns Blue Jeans:</strong> ${submission.ownsBlueJeans ? "Yes" : "No"}</p>
-                    <p><strong>Location ID:</strong> ${submission.socioLocationId}</p>
-                </section>
-            `;
-        }
+        const submissionSections = submissions.map((submission) => `
+            <section class="submission">
+                <p><strong>Owns Blue Jeans:</strong> ${submission.ownsBlueJeans ? "Yes" : "No"}</p>
+                <p><strong>Location ID:</strong> ${submission.socioLocationId}</p>
+            </section>
+        `).join("");
+
+        submissionHTML += submissionSections;
     }
 
     return submissionHTML;
